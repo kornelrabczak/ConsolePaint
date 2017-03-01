@@ -5,6 +5,8 @@ import com.thecookiezen.bussiness.boundary.Printer;
 import com.thecookiezen.bussiness.control.Canvas;
 import com.thecookiezen.bussiness.control.Request;
 import com.thecookiezen.infrastructure.command.CreateCanvas;
+import com.thecookiezen.infrastructure.command.DrawLine;
+import com.thecookiezen.infrastructure.command.DrawRectangle;
 
 import java.util.Map;
 import java.util.function.Consumer;
@@ -20,6 +22,8 @@ public class CommandHandler {
     public CommandHandler(Printer printer) {
         executables = ImmutableMap.<Character, Consumer<Request>>builder()
                 .put(CreateCanvas.COMMAND_KEY, request -> new CreateCanvas(this, request).execute(canvas, printer))
+                .put(DrawLine.COMMAND_KEY, request -> new DrawLine(request).execute(canvas, printer))
+                .put(DrawRectangle.COMMAND_KEY, request -> new DrawRectangle(request).execute(canvas, printer))
                 .put(Quit.COMMAND_KEY, request -> {
                     throw new Quit();
                 })
