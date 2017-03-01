@@ -20,6 +20,9 @@ public class CommandHandler {
     public CommandHandler(Printer printer) {
         executables = ImmutableMap.<Character, Consumer<Request>>builder()
                 .put(CreateCanvas.COMMAND_KEY, request -> new CreateCanvas(this, request).execute(canvas, printer))
+                .put(Quit.COMMAND_KEY, request -> {
+                    throw new Quit();
+                })
                 .build();
     }
 
