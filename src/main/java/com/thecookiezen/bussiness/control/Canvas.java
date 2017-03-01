@@ -30,11 +30,6 @@ public class Canvas {
                 .forEach(p -> this.drawableArea[p.getX()][p.getY()] = Line.FILL_CHARACTER);
     }
 
-    private boolean isPointWithinBoundary(Point p) {
-        return p.getX() >= 0 && p.getX() < drawableArea.length
-                && p.getY() >= 0 && p.getY() < drawableArea[0].length;
-    }
-
     public char[][] getDrawableArea() {
         char[][] copyOf = new char[drawableArea.length][];
         for (int x = 0; x < drawableArea.length; x++) {
@@ -50,5 +45,38 @@ public class Canvas {
         for (Line line : rectangle.getLines()) {
             drawLine(line);
         }
+    }
+
+    public void fill(Point point, char color) {
+        if (!isPointWithinBoundary(point)) {
+            return;
+        }
+
+        fillPoint(point.getX(), point.getY(), color);
+    }
+
+    private void fillPoint(int x, int y, char color) {
+        if (!isPointWithinBoundary(x, y) || !isPointEmpty(x, y)) {
+            return;
+        }
+
+        drawableArea[x][y] = color;
+
+        fillPoint(x, y + 1, color);
+        fillPoint(x, y - 1, color);
+        fillPoint(x - 1, y, color);
+        fillPoint(x + 1, y, color);
+    }
+
+    private boolean isPointEmpty(int x, int y) {
+        return drawableArea[x][y] == EMPTY_SPACE;
+    }
+
+    private boolean isPointWithinBoundary(Point p) {
+        return isPointWithinBoundary(p.getX(), p.getY());
+    }
+
+    private boolean isPointWithinBoundary(int x, int y) {
+        return x >= 0 && x < drawableArea.length && y >= 0 && y < drawableArea[0].length;
     }
 }
