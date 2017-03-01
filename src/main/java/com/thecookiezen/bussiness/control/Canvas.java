@@ -48,18 +48,13 @@ public class Canvas {
     }
 
     public void fill(Point point, char color) {
-        if (!isPointWithinBoundary(point)) {
-            return;
-        }
-
         fillPoint(point.getX(), point.getY(), color);
     }
 
     private void fillPoint(int x, int y, char color) {
-        if (!isPointWithinBoundary(x, y) || !isPointEmpty(x, y)) {
+        if (!isPointWithinBoundary(x, y) || !isPointEmpty(x, y, color)) {
             return;
         }
-
         drawableArea[x][y] = color;
 
         fillPoint(x, y + 1, color);
@@ -68,8 +63,9 @@ public class Canvas {
         fillPoint(x + 1, y, color);
     }
 
-    private boolean isPointEmpty(int x, int y) {
-        return drawableArea[x][y] == EMPTY_SPACE;
+    private boolean isPointEmpty(int x, int y, char color) {
+        return  drawableArea[x][y] != color
+                && (drawableArea[x][y] == EMPTY_SPACE || drawableArea[x][y] != Line.FILL_CHARACTER);
     }
 
     private boolean isPointWithinBoundary(Point p) {
