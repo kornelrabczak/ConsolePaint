@@ -9,7 +9,7 @@ public class Point {
 
     public Point(int x, int y) {
         Preconditions.checkArgument(x > -1, "x must be non negative.");
-        Preconditions.checkArgument(y > -1, "x must be non negative.");
+        Preconditions.checkArgument(y > -1, "y must be non negative.");
 
         this.x = x;
         this.y = y;
