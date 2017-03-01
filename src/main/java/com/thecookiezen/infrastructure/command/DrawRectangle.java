@@ -5,7 +5,7 @@ import com.thecookiezen.bussiness.boundary.Printable;
 import com.thecookiezen.bussiness.boundary.Printer;
 import com.thecookiezen.bussiness.control.Canvas;
 import com.thecookiezen.bussiness.control.Request;
-import com.thecookiezen.bussiness.entity.Point;
+import com.thecookiezen.bussiness.entity.PointOneBased;
 import com.thecookiezen.bussiness.entity.Rectangle;
 
 public class DrawRectangle implements Printable {
@@ -22,8 +22,8 @@ public class DrawRectangle implements Printable {
     @Override
     public void execute(Canvas canvas, Printer printer) {
         canvas.drawRectangle(new Rectangle(
-                new Point(request.getCoordinates().get(0), request.getCoordinates().get(1)),
-                new Point(request.getCoordinates().get(2), request.getCoordinates().get(3))
+                new PointOneBased(request.getCoordinates().get(0), request.getCoordinates().get(1)),
+                new PointOneBased(request.getCoordinates().get(2), request.getCoordinates().get(3))
         ));
         printer.print(canvas);
     }

@@ -49,11 +49,11 @@ public class SystemOutPrinterTest {
         // then
         assertThat(outContent.toString()).isEqualTo(
                 "------------" + System.lineSeparator() +
-                "|   x   x  |" + System.lineSeparator() +
-                "|   x   x  |" + System.lineSeparator() +
-                "|   x   x  |" + System.lineSeparator() +
+                "|   x      |" + System.lineSeparator() +
                 "|xxxxxxxxxx|" + System.lineSeparator() +
-                "|   x      |" + System.lineSeparator()  +
+                "|   x   x  |" + System.lineSeparator() +
+                "|   x   x  |" + System.lineSeparator() +
+                "|   x   x  |" + System.lineSeparator()  +
                 "------------" + System.lineSeparator() );
     }
 
@@ -72,11 +72,11 @@ public class SystemOutPrinterTest {
         // then
         assertThat(outContent.toString()).isEqualTo(
                 "------------" + System.lineSeparator() +
-                "|   xxxxx  |" + System.lineSeparator() +
-                "|   x   x  |" + System.lineSeparator() +
-                "|   x   x  |" + System.lineSeparator() +
-                "|   xxxxx  |" + System.lineSeparator() +
                 "|          |" + System.lineSeparator()  +
+                "|   xxxxx  |" + System.lineSeparator() +
+                "|   x   x  |" + System.lineSeparator() +
+                "|   x   x  |" + System.lineSeparator() +
+                "|   xxxxx  |" + System.lineSeparator() +
                 "------------" + System.lineSeparator() );
     }
 
@@ -95,11 +95,11 @@ public class SystemOutPrinterTest {
         // then
         assertThat(outContent.toString()).isEqualTo(
                 "------------" + System.lineSeparator() +
-                "|      x   |" + System.lineSeparator() +
-                "|      x   |" + System.lineSeparator() +
-                "|      x   |" + System.lineSeparator() +
-                "|      xxxx|" + System.lineSeparator() +
                 "|          |" + System.lineSeparator()  +
+                "|      xxxx|" + System.lineSeparator() +
+                "|      x   |" + System.lineSeparator() +
+                "|      x   |" + System.lineSeparator() +
+                "|      x   |" + System.lineSeparator() +
                 "------------" + System.lineSeparator() );
     }
 
@@ -121,13 +121,13 @@ public class SystemOutPrinterTest {
         // then
         assertThat(outContent.toString()).isEqualTo(
                 "------------" + System.lineSeparator() +
-                "|      xxxx|" + System.lineSeparator() +
-                "|      x  x|" + System.lineSeparator() +
-                "|      x  x|" + System.lineSeparator() +
-                "|      xxxx|" + System.lineSeparator() +
                 "|   x      |" + System.lineSeparator() +
                 "|xxxxxxxxxx|" + System.lineSeparator() +
                 "|   x      |" + System.lineSeparator()  +
+                "|      xxxx|" + System.lineSeparator() +
+                "|      x  x|" + System.lineSeparator() +
+                "|      x  x|" + System.lineSeparator() +
+                "|      xxxx|" + System.lineSeparator() +
                 "------------" + System.lineSeparator() );
     }
 }
