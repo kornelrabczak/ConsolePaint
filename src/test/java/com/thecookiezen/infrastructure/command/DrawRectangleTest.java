@@ -19,16 +19,16 @@ public class DrawRectangleTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void should_throw_exception_for_wrong_coordinates_count() {
-        new DrawRectangle(new UserInput(Character.MIN_VALUE, Lists.newArrayList(1, 2, 3), "c"));
+        new DrawRectangle(canvas, printer).execute(new UserInput(Character.MIN_VALUE, Lists.newArrayList(1, 2, 3), "c"));
     }
 
     @Test
     public void should_execute_command() {
         // given
-        final UserInput c = new UserInput(Character.MIN_VALUE, Lists.newArrayList(1, 2, 3, 4), "c");
+        final UserInput userInput = new UserInput(Character.MIN_VALUE, Lists.newArrayList(1, 2, 3, 4), "c");
 
         // when
-        new DrawRectangle(c).execute(canvas, printer);
+        new DrawRectangle(canvas, printer).execute(userInput);
 
         // then
         verify(canvas, only()).drawRectangle(any());

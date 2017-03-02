@@ -19,16 +19,16 @@ public class DrawLineTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void should_throw_exception_for_wrong_coordinates_count() {
-        new DrawLine(new UserInput(Character.MIN_VALUE, Lists.newArrayList(1, 2, 3), "c"));
+        new DrawLine(canvas, printer).execute(new UserInput(Character.MIN_VALUE, Lists.newArrayList(1, 2, 3), "c"));
     }
 
     @Test
     public void should_execute_command() {
         // given
-        final UserInput c = new UserInput(Character.MIN_VALUE, Lists.newArrayList(1, 2, 1, 4), "c");
+        final UserInput userInput = new UserInput(Character.MIN_VALUE, Lists.newArrayList(1, 2, 1, 4), "c");
 
         // when
-        new DrawLine(c).execute(canvas, printer);
+        new DrawLine(canvas, printer).execute(userInput);
 
         // then
         verify(canvas, only()).drawLine(any());

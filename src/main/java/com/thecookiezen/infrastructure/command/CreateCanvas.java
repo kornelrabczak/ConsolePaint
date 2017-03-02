@@ -1,29 +1,24 @@
 package com.thecookiezen.infrastructure.command;
 
-import com.google.common.base.Preconditions;
-import com.thecookiezen.bussiness.boundary.Printable;
+import com.thecookiezen.bussiness.boundary.PrintableCommand;
 import com.thecookiezen.bussiness.boundary.Printer;
 import com.thecookiezen.bussiness.control.Canvas;
 import com.thecookiezen.bussiness.control.UserInput;
 import com.thecookiezen.infrastructure.CommandHandler;
 
-public class CreateCanvas implements Printable {
+import java.util.List;
+
+public class CreateCanvas extends PrintableCommand {
 
     public static final char COMMAND_KEY = 'C';
 
-    private final CommandHandler handler;
-    private final UserInput userInput;
-
-    public CreateCanvas(CommandHandler handler, UserInput userInput) {
-        Preconditions.checkArgument(userInput.getCoordinates().size() == 2, "Create canvas command must have 2 coordinates.");
-        this.handler = handler;
-        this.userInput = userInput;
+    public CreateCanvas(CommandHandler commandHandler, List<Integer> coordinates, Printer printer) {
+        super(new Canvas(coordinates.get(0), coordinates.get(1)), printer);
+        commandHandler.setCanvas(canvas);
     }
 
     @Override
-    public void execute(Canvas ignore, Printer printer) {
-        final Canvas createdCanvas = new Canvas(userInput.getCoordinates().get(0), userInput.getCoordinates().get(1));
-        handler.setCanvas(createdCanvas);
-        printer.print(createdCanvas);
+    public void execute(UserInput userInput) {
+        printer.print(canvas);
     }
 }

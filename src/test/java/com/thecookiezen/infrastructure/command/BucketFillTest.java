@@ -20,26 +20,26 @@ public class BucketFillTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void should_throw_exception_for_wrong_coordinates_count() {
-        new BucketFill(new UserInput(Character.MIN_VALUE, Lists.newArrayList(1, 2, 3), "c"));
+        new BucketFill(canvas, printer).execute(new UserInput(Character.MIN_VALUE, Lists.newArrayList(1, 2, 3), "c"));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void should_throw_exception_for_empty_color_character() {
-        new BucketFill(new UserInput(Character.MIN_VALUE, Lists.newArrayList(1, 2), " "));
+        new BucketFill(canvas, printer).execute(new UserInput(Character.MIN_VALUE, Lists.newArrayList(1, 2), " "));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void should_throw_exception_for_no_color_character() {
-        new BucketFill(new UserInput(Character.MIN_VALUE, Lists.newArrayList(1, 2), ""));
+        new BucketFill(canvas, printer).execute(new UserInput(Character.MIN_VALUE, Lists.newArrayList(1, 2), ""));
     }
 
     @Test
     public void should_execute_command() {
         // given
-        final UserInput c = new UserInput('B', Lists.newArrayList(1, 2), "c");
+        final UserInput userInput = new UserInput('B', Lists.newArrayList(1, 2), "c");
 
         // when
-        new BucketFill(c).execute(canvas, printer);
+        new BucketFill(canvas, printer).execute(userInput);
 
         // then
         verify(canvas, only()).fill(eq(new PointOneBased(1, 2)), eq('c'));

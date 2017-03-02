@@ -1,26 +1,24 @@
 package com.thecookiezen.infrastructure.command;
 
 import com.google.common.base.Preconditions;
-import com.thecookiezen.bussiness.boundary.Printable;
+import com.thecookiezen.bussiness.boundary.PrintableCommand;
 import com.thecookiezen.bussiness.boundary.Printer;
 import com.thecookiezen.bussiness.control.Canvas;
 import com.thecookiezen.bussiness.control.UserInput;
 import com.thecookiezen.bussiness.entity.Line;
 import com.thecookiezen.bussiness.entity.PointOneBased;
 
-public class DrawLine implements Printable {
+public class DrawLine extends PrintableCommand {
 
     public static final char COMMAND_KEY = 'L';
 
-    private final UserInput userInput;
-
-    public DrawLine(UserInput userInput) {
-        Preconditions.checkArgument(userInput.getCoordinates().size() == 4, "Draw line command must have 4 coordinates.");
-        this.userInput = userInput;
+    public DrawLine(Canvas canvas, Printer printer) {
+        super(canvas, printer);
     }
 
     @Override
-    public void execute(Canvas canvas, Printer printer) {
+    public void execute(UserInput userInput) {
+        Preconditions.checkArgument(userInput.getCoordinates().size() == 4, "Draw line command must have 4 coordinates.");
         canvas.drawLine(new Line(
                 new PointOneBased(userInput.getCoordinates().get(0), userInput.getCoordinates().get(1)),
                 new PointOneBased(userInput.getCoordinates().get(2), userInput.getCoordinates().get(3))

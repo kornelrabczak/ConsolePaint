@@ -22,10 +22,10 @@ public class CommandHandler {
 
     public CommandHandler(Printer printer) {
         executables = ImmutableMap.<Character, Consumer<UserInput>>builder()
-                .put(CreateCanvas.COMMAND_KEY, request -> new CreateCanvas(this, request).execute(canvas, printer))
-                .put(DrawLine.COMMAND_KEY, request -> new DrawLine(request).execute(canvas, printer))
-                .put(DrawRectangle.COMMAND_KEY, request -> new DrawRectangle(request).execute(canvas, printer))
-                .put(BucketFill.COMMAND_KEY, request -> new BucketFill(request).execute(canvas, printer))
+                .put(CreateCanvas.COMMAND_KEY, request -> new CreateCanvas(this, request.getCoordinates(), printer).execute(request))
+                .put(DrawLine.COMMAND_KEY, request -> new DrawLine(canvas, printer).execute(request))
+                .put(DrawRectangle.COMMAND_KEY, request -> new DrawRectangle(canvas, printer).execute(request))
+                .put(BucketFill.COMMAND_KEY, request -> new BucketFill(canvas, printer).execute(request))
                 .put(Quit.COMMAND_KEY, request -> {
                     throw new Quit();
                 })
@@ -33,10 +33,6 @@ public class CommandHandler {
     }
 
     public void handle(UserInput userInput) {
-        if (userInput.getCommandKey() != CreateCanvas.COMMAND_KEY && canvas == null) {
-            throw new IllegalStateException("Canvas must be created first. Use C command.");
-        }
-
         executables.getOrDefault(userInput.getCommandKey(), NO_OP).accept(userInput);
     }
 

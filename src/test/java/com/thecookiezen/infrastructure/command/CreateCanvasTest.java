@@ -7,6 +7,8 @@ import com.thecookiezen.bussiness.control.UserInput;
 import com.thecookiezen.infrastructure.CommandHandler;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.only;
@@ -23,16 +25,17 @@ public class CreateCanvasTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void should_throw_exception_for_wrong_coordinates_count() {
-        new CreateCanvas(commandHandler, new UserInput(Character.MIN_VALUE, Lists.newArrayList(1, 2, 3), "c"));
+        final ArrayList<Integer> coordinates = Lists.newArrayList(1, 2, 3);
+        new CreateCanvas(commandHandler, coordinates, printer).execute(new UserInput(Character.MIN_VALUE, coordinates, "c"));
     }
 
     @Test
     public void should_execute_command() {
         // given
-        final UserInput c = new UserInput(Character.MIN_VALUE, Lists.newArrayList(2, 4), "c");
+        final UserInput userInput = new UserInput(Character.MIN_VALUE, Lists.newArrayList(2, 4), "c");
 
         // when
-        new CreateCanvas(commandHandler, c).execute(canvas, printer);
+        new CreateCanvas(commandHandler, userInput.getCoordinates(), printer).execute(userInput);
 
         // then
         verifyZeroInteractions(canvas);
