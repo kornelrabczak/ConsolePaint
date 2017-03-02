@@ -26,8 +26,8 @@ public class SystemOutPrinter implements Printer {
     private void drawCanvas(char[][] drawableArea) {
         for (int y = 0; y <= drawableArea[0].length - 1; y++) {
             System.out.print('|');
-            for (int x = 0; x < drawableArea.length; x++) {
-                System.out.print(drawableArea[x][y]);
+            for (char[] aDrawableArea : drawableArea) {
+                System.out.print(aDrawableArea[y]);
             }
             System.out.println('|');
         }

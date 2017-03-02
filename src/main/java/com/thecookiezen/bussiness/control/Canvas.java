@@ -34,9 +34,7 @@ public class Canvas {
         char[][] copyOf = new char[drawableArea.length][];
         for (int x = 0; x < drawableArea.length; x++) {
             copyOf[x] = new char[drawableArea[x].length];
-            for (int y = 0; y < drawableArea[x].length; y++) {
-                copyOf[x][y] = drawableArea[x][y];
-            }
+            System.arraycopy(drawableArea[x], 0, copyOf[x], 0, drawableArea[x].length);
         }
         return copyOf;
     }

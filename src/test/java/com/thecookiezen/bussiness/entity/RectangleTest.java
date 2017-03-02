@@ -46,7 +46,6 @@ public class RectangleTest {
         final Rectangle actual = new Rectangle(p1, p2);
 
         // then
-        assertThat(actual.getLines()).hasSize(4);
         assertThat(actual.getLines()).containsOnly(
                 new Line(new Point(2, 2), new Point(3,2)),
                 new Line(new Point(2, 2), new Point(2,1)),
@@ -56,40 +55,38 @@ public class RectangleTest {
     }
 
     @Test
-    public void should_return_points_for_3x5_rectangle() {
+    public void should_return_points_for_5x3_rectangle() {
         // given
         Point p1 = new Point(8, 8);
-        Point p2 = new Point(13, 3);
+        Point p2 = new Point(13, 5);
 
         // when
         final Rectangle actual = new Rectangle(p1, p2);
 
         // then
-        assertThat(actual.getLines()).hasSize(4);
         assertThat(actual.getLines()).containsOnly(
                 new Line(new Point(8, 8), new Point(13,8)),
-                new Line(new Point(8, 8), new Point(8,3)),
-                new Line(new Point(13, 8), new Point(13,3)),
-                new Line(new Point(8, 3), new Point(13,3))
+                new Line(new Point(8, 8), new Point(8,5)),
+                new Line(new Point(13, 8), new Point(13,5)),
+                new Line(new Point(8, 5), new Point(13,5))
         );
     }
 
     @Test
-    public void should_return_points_for_5x3_rectangle() {
+    public void should_return_points_for_3x5_rectangle() {
         // given
         Point p1 = new Point(8, 8);
-        Point p2 = new Point(13, 3);
+        Point p2 = new Point(11, 3);
 
         // when
         final Rectangle actual = new Rectangle(p1, p2);
 
         // then
-        assertThat(actual.getLines()).hasSize(4);
         assertThat(actual.getLines()).containsOnly(
-                new Line(new Point(8, 8), new Point(13,8)),
+                new Line(new Point(8, 8), new Point(11,8)),
                 new Line(new Point(8, 8), new Point(8,3)),
-                new Line(new Point(13, 8), new Point(13,3)),
-                new Line(new Point(8, 3), new Point(13,3))
+                new Line(new Point(11, 8), new Point(11,3)),
+                new Line(new Point(8, 3), new Point(11,3))
         );
     }
 
