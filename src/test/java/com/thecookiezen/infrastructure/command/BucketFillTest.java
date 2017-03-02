@@ -3,7 +3,7 @@ package com.thecookiezen.infrastructure.command;
 import com.google.common.collect.Lists;
 import com.thecookiezen.bussiness.boundary.Printer;
 import com.thecookiezen.bussiness.control.Canvas;
-import com.thecookiezen.bussiness.control.Request;
+import com.thecookiezen.bussiness.control.UserInput;
 import com.thecookiezen.bussiness.entity.PointOneBased;
 import org.junit.Test;
 
@@ -20,23 +20,23 @@ public class BucketFillTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void should_throw_exception_for_wrong_coordinates_count() {
-        new BucketFill(new Request(Character.MIN_VALUE, Lists.newArrayList(1, 2, 3), "c"));
+        new BucketFill(new UserInput(Character.MIN_VALUE, Lists.newArrayList(1, 2, 3), "c"));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void should_throw_exception_for_empty_color_character() {
-        new BucketFill(new Request(Character.MIN_VALUE, Lists.newArrayList(1, 2), " "));
+        new BucketFill(new UserInput(Character.MIN_VALUE, Lists.newArrayList(1, 2), " "));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void should_throw_exception_for_no_color_character() {
-        new BucketFill(new Request(Character.MIN_VALUE, Lists.newArrayList(1, 2), ""));
+        new BucketFill(new UserInput(Character.MIN_VALUE, Lists.newArrayList(1, 2), ""));
     }
 
     @Test
     public void should_execute_command() {
         // given
-        final Request c = new Request('B', Lists.newArrayList(1, 2), "c");
+        final UserInput c = new UserInput('B', Lists.newArrayList(1, 2), "c");
 
         // when
         new BucketFill(c).execute(canvas, printer);

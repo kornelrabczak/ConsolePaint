@@ -3,15 +3,15 @@ package com.thecookiezen.bussiness.control;
 import java.util.Collections;
 import java.util.List;
 
-public class Request {
+public class UserInput {
 
-    public static final Request EMPTY_REQUEST = new Request(Character.MIN_VALUE, Collections.emptyList(), "");
+    public static final UserInput EMPTY_USER_INPUT = new UserInput(Character.MIN_VALUE, Collections.emptyList(), "");
 
     private final char commandKey;
     private final List<Integer> coordinates;
     private final String additionalParameter;
 
-    public Request(char commandKey, List<Integer> pointers, String additionalParameter) {
+    public UserInput(char commandKey, List<Integer> pointers, String additionalParameter) {
         this.commandKey = commandKey;
         this.coordinates = pointers;
         this.additionalParameter = additionalParameter;
@@ -34,11 +34,11 @@ public class Request {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Request request = (Request) o;
+        UserInput userInput = (UserInput) o;
 
-        if (commandKey != request.commandKey) return false;
-        if (!coordinates.equals(request.coordinates)) return false;
-        return additionalParameter.equals(request.additionalParameter);
+        if (commandKey != userInput.commandKey) return false;
+        if (!coordinates.equals(userInput.coordinates)) return false;
+        return additionalParameter.equals(userInput.additionalParameter);
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.thecookiezen.infrastructure.command;
 import com.google.common.collect.Lists;
 import com.thecookiezen.bussiness.boundary.Printer;
 import com.thecookiezen.bussiness.control.Canvas;
-import com.thecookiezen.bussiness.control.Request;
+import com.thecookiezen.bussiness.control.UserInput;
 import com.thecookiezen.infrastructure.CommandHandler;
 import org.junit.Test;
 
@@ -23,13 +23,13 @@ public class CreateCanvasTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void should_throw_exception_for_wrong_coordinates_count() {
-        new CreateCanvas(commandHandler, new Request(Character.MIN_VALUE, Lists.newArrayList(1, 2, 3), "c"));
+        new CreateCanvas(commandHandler, new UserInput(Character.MIN_VALUE, Lists.newArrayList(1, 2, 3), "c"));
     }
 
     @Test
     public void should_execute_command() {
         // given
-        final Request c = new Request(Character.MIN_VALUE, Lists.newArrayList(2, 4), "c");
+        final UserInput c = new UserInput(Character.MIN_VALUE, Lists.newArrayList(2, 4), "c");
 
         // when
         new CreateCanvas(commandHandler, c).execute(canvas, printer);
