@@ -119,4 +119,34 @@ public class ApplicationAcceptanceTests {
                 "|     xoooooooooooooo|" + System.lineSeparator() +
                 "----------------------" + System.lineSeparator() );
     }
+
+    @Test
+    public void should_quit_after_first_line() {
+        // given
+        String drawLine = "C 20 4\n L 1 2 6 2\n Q\n L 6 3 6 4\n R 16 1 20 3\n B 10 3 o";
+
+        // when
+        sut.start(new ByteArrayInputStream(drawLine.getBytes()));
+
+        // then
+        assertThat(outContent.toString()).doesNotContain(
+                "----------------------" + System.lineSeparator() +
+                "|                    |" + System.lineSeparator() +
+                "|xxxxxx              |" + System.lineSeparator() +
+                "|     x              |" + System.lineSeparator() +
+                "|     x              |" + System.lineSeparator() +
+                "----------------------" + System.lineSeparator() );
+    }
+
+    @Test
+    public void should_print_exception_message() {
+        // given
+        String drawLine = "C 20 4\n R 1 2 3 2";
+
+        // when
+        sut.start(new ByteArrayInputStream(drawLine.getBytes()));
+
+        // then
+        assertThat(outContent.toString()).contains("Points can't be in line.");
+    }
 }
