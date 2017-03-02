@@ -1,7 +1,10 @@
 package com.thecookiezen.infrastructure;
 
+import com.google.common.collect.Lists;
 import com.thecookiezen.bussiness.control.Request;
 import org.junit.Test;
+
+import java.util.Collections;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -33,9 +36,7 @@ public class RequestFactoryTest {
         final Request actual = factory.createRequestFromString("C 20 4");
 
         // then
-        assertThat(actual.getCommandKey()).isEqualTo('C');
-        assertThat(actual.getCoordinates()).containsExactly(20, 4);
-        assertThat(actual.getAdditionalParameter()).isEmpty();
+        assertThat(actual).isEqualTo(new Request('C', Lists.newArrayList(20, 4), ""));
     }
 
     @Test
@@ -44,9 +45,7 @@ public class RequestFactoryTest {
         final Request actual = factory.createRequestFromString("L 1 2 6 2");
 
         // then
-        assertThat(actual.getCommandKey()).isEqualTo('L');
-        assertThat(actual.getCoordinates()).containsExactly(1, 2, 6, 2);
-        assertThat(actual.getAdditionalParameter()).isEmpty();
+        assertThat(actual).isEqualTo(new Request('L', Lists.newArrayList(1, 2, 6, 2), ""));
     }
 
     @Test
@@ -64,9 +63,7 @@ public class RequestFactoryTest {
         final Request actual = factory.createRequestFromString("R 16 1 20 3");
 
         // then
-        assertThat(actual.getCommandKey()).isEqualTo('R');
-        assertThat(actual.getCoordinates()).containsExactly(16, 1, 20, 3);
-        assertThat(actual.getAdditionalParameter()).isEmpty();
+        assertThat(actual).isEqualTo(new Request('R', Lists.newArrayList(16, 1, 20, 3), ""));
     }
 
     @Test
@@ -75,9 +72,7 @@ public class RequestFactoryTest {
         final Request actual = factory.createRequestFromString("B 10 3 c");
 
         // then
-        assertThat(actual.getCommandKey()).isEqualTo('B');
-        assertThat(actual.getCoordinates()).containsExactly(10, 3);
-        assertThat(actual.getAdditionalParameter()).isEqualTo("c");
+        assertThat(actual).isEqualTo(new Request('B', Lists.newArrayList(10, 3), "c"));
     }
 
     @Test
@@ -86,8 +81,6 @@ public class RequestFactoryTest {
         final Request actual = factory.createRequestFromString("Q");
 
         // then
-        assertThat(actual.getCommandKey()).isEqualTo('Q');
-        assertThat(actual.getCoordinates()).isEmpty();
-        assertThat(actual.getAdditionalParameter()).isEmpty();
+        assertThat(actual).isEqualTo(new Request('Q', Collections.emptyList(), ""));
     }
 }

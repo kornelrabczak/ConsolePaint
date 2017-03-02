@@ -30,11 +30,22 @@ public class Request {
     }
 
     @Override
-    public String toString() {
-        return "Request{" +
-                "commandKey=" + commandKey +
-                ", coordinates=" + coordinates +
-                ", additionalParameter=" + additionalParameter +
-                '}';
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Request request = (Request) o;
+
+        if (commandKey != request.commandKey) return false;
+        if (!coordinates.equals(request.coordinates)) return false;
+        return additionalParameter.equals(request.additionalParameter);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) commandKey;
+        result = 31 * result + coordinates.hashCode();
+        result = 31 * result + additionalParameter.hashCode();
+        return result;
     }
 }
