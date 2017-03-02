@@ -13,4 +13,4 @@ Simple console based application for drawing lines and rectangle on created canv
 ## Running application
 
     mvn clean package
-    java -jar target/consolepaint-1.0-SNAPSHOT-jar-with-dependencies.jar
+    java -jar target/console-paint-1.0-SNAPSHOT-jar-with-dependencies.jar
