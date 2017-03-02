@@ -19,7 +19,7 @@ public class UserInputFactory {
     private static final Pattern WHITESPACE_PATTERN = Pattern.compile("\\s");
 
     public UserInput createUserInputFromString(String requestStringify) {
-        final Matcher requestMatcher = REQUEST_PATTERN.matcher(requestStringify);
+        final Matcher requestMatcher = REQUEST_PATTERN.matcher(requestStringify.trim());
         if (requestMatcher.find()) {
             final List<Integer> pointers = WHITESPACE_PATTERN.splitAsStream(requestMatcher.group(COORDINATE))
                     .map(Integer::parseInt)

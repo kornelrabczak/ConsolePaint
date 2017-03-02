@@ -6,4 +6,5 @@ public interface Printer {
 
     void print(Canvas canvas);
     void print(String message);
+    void println(String message);
 }

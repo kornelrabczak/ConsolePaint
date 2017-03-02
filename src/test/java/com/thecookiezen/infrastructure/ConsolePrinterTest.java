@@ -14,15 +14,17 @@ import java.io.PrintStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SystemOutPrinterTest {
+public class ConsolePrinterTest {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
-    private Printer printer = new SystemOutPrinter();
+    private final PrintStream printStream = new PrintStream(outContent);
+
+    private Printer printer = new ConsolePrinter(printStream);
 
     @Before
     public void setUpStreams() {
-        System.setOut(new PrintStream(outContent));
+        System.setOut(printStream);
     }
 
     @After

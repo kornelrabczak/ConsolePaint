@@ -5,20 +5,32 @@ import com.thecookiezen.bussiness.control.UserInput;
 import com.thecookiezen.infrastructure.CommandHandler;
 import com.thecookiezen.infrastructure.Quit;
 import com.thecookiezen.infrastructure.UserInputFactory;
-import com.thecookiezen.infrastructure.SystemOutPrinter;
+import com.thecookiezen.infrastructure.ConsolePrinter;
 
+import java.io.InputStream;
 import java.util.Scanner;
 
 public class ApplicationRunner {
 
+    private final UserInputFactory userInputFactory;
+
+    private final Printer printer;
+
+    ApplicationRunner(UserInputFactory userInputFactory, Printer printer) {
+        this.userInputFactory = userInputFactory;
+        this.printer = printer;
+    }
+
     public static void main(String[] args) {
-        final UserInputFactory userInputFactory = new UserInputFactory();
-        final Printer printer = new SystemOutPrinter();
+        new ApplicationRunner(new UserInputFactory(), new ConsolePrinter(System.out)).start(System.in);
+    }
+
+    void start(InputStream in) {
         final CommandHandler commandHandler = new CommandHandler(printer);
 
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(in);
 
-        System.out.print("enter command: ");
+        printer.print("enter command: ");
         while (scanner.hasNextLine()) {
             final UserInput userInput = userInputFactory.createUserInputFromString(scanner.nextLine());
 
@@ -27,9 +39,9 @@ public class ApplicationRunner {
             } catch (Quit q) {
                 break;
             } catch (Exception e) {
-                printer.print(e.getMessage());
+                printer.println(e.getMessage());
             }
-            System.out.print("enter command: ");
+            printer.print("enter command: ");
         }
     }
 }
