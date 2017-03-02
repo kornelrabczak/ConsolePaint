@@ -4,11 +4,11 @@ Simple console based application for drawing lines and rectangle on created canv
 
 ## Commands
 
-* create canvas
-* draw line
-* draw rectangle
-* fill with color
-* quit
+* 'C w h' - creates new canvas of width w and height h
+* 'L x1 y1 x2 y2' - creates a new line from (x1,y1) to (x2,y2). Only horizontal or vertical lines are supported.
+* 'R x1 y1 x2 y2' - creates a new rectangle, with upper left corner (x1,y1) and lower right corner (x2,y2).
+* 'B x y c' - fill the area connected to point (x,y) with colour 'c'.
+* 'Quit' - exit program
 
 ## Running application
 
